@@ -1,0 +1,76 @@
+{
+  "name": "postgen2",
+  "version": "0.0.5",
+  "description": "Template-driven JSON -> PNG poster generator CLI powered by satori + resvg",
+  "type": "module",
+  "bin": {
+    "postgen": "dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test:run && npm run build",
+    "render:xhs-note": "tsx src/cli.ts render --template xhs-note --data examples/xhs-note.json --stable-name --font fonts/extracted/PingFang-SC-Regular.ttf --fontBold fonts/extracted/PingFang-SC-Semibold.ttf",
+    "render:xhs-note-green": "tsx src/cli.ts render --template xhs-note-green --data examples/xhs-note-green.json --stable-name --font fonts/extracted/PingFang-SC-Regular.ttf --fontBold fonts/extracted/PingFang-SC-Semibold.ttf",
+    "showcase:release": "npm run build && node scripts/render-release-showcase.mjs",
+    "template:list": "tsx src/cli.ts template --action list",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "keywords": [
+    "satori",
+    "resvg",
+    "og-image",
+    "poster",
+    "cli",
+    "json",
+    "png"
+  ],
+  "author": "微笑",
+  "license": "MIT",
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "budoux": "^0.7.0",
+    "conf": "^15.1.0",
+    "react": "^19.2.4",
+    "satori": "^0.19.1",
+    "yargs": "^18.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.2",
+    "@types/react": "^19.2.13",
+    "@types/yargs": "^17.0.35",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/try-to-fly/postgen.git"
+  },
+  "homepage": "https://github.com/try-to-fly/postgen#readme",
+  "bugs": {
+    "url": "https://github.com/try-to-fly/postgen/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "scripts/render-release-showcase.mjs",
+    "fonts/custom/LXGWWenKaiLite-Regular.ttf",
+    "fonts/custom/LXGWMarkerGothic-Regular.ttf",
+    "fonts/custom/PatrickHand-Regular.ttf",
+    "fonts/custom/Caveat-wght.ttf",
+    "fonts/custom/PatrickHand-OFL.txt",
+    "fonts/custom/Caveat-OFL.txt",
+    "README.md",
+    "docs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

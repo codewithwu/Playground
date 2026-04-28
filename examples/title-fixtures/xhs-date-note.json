@@ -1,0 +1,42 @@
+[
+  {
+    "name": "d01-weather-day",
+    "title": "今天天气好好\n春天的油菜花\n都开了"
+  },
+  {
+    "name": "d02-soft-daily",
+    "title": "今天阳光刚刚好\n适合把心情也晒一晒"
+  },
+  {
+    "name": "d03-weekend-note",
+    "title": "周末最舒服的状态\n是把节奏慢下来"
+  },
+  {
+    "name": "d04-cn-en-mix",
+    "title": "今天适合 debug 一下生活\n把焦虑先静音"
+  },
+  {
+    "name": "d05-creator-mood",
+    "title": "做内容这件事\n有时候先把自己说服\n比先说服别人更重要"
+  },
+  {
+    "name": "d06-manual-lines",
+    "title": "今天没有大事\n但有一点点开心\n也值得记下来"
+  },
+  {
+    "name": "d07-openclaw-emoji",
+    "title": "用 OpenClaw🦞\n把一段普通日记\n排成更有记忆点的图"
+  },
+  {
+    "name": "d08-workflow-note",
+    "title": "当 Prompt、Workflow、UI\n终于连起来之后\n表达也开始顺了"
+  },
+  {
+    "name": "d09-claude-code",
+    "title": "Claude Code 帮我把\n一个松散想法\n收成了清楚结构"
+  },
+  {
+    "name": "d10-tesla-daily",
+    "title": "今天看完 Tesla 数据\n忽然很想把一天\n也这样认真记录下来"
+  }
+]
