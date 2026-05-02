@@ -29,8 +29,8 @@ function stopBadgeTimer() {
 
 function updateBadge(endTime) {
   const remaining = Math.ceil((endTime - Date.now()) / 1000);
-  const minutes = Math.ceil(remaining / 60);
-  if (minutes > 0) {
+  const minutes = Math.floor(remaining / 60);
+  if (minutes >= 1) {
     chrome.action.setBadgeText({ text: String(minutes) });
     chrome.action.setBadgeBackgroundColor({ color: '#FF8C64' });
   } else {
