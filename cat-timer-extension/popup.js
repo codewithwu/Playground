@@ -5,6 +5,8 @@ const customMinutesInput = document.getElementById('custom-minutes');
 const startBtn = document.getElementById('start-btn');
 const cancelBtn = document.getElementById('cancel-btn');
 
+let timerInterval = null;
+
 // Get stored timer state
 async function getTimerState() {
   return new Promise((resolve) => {
@@ -99,12 +101,16 @@ async function init() {
   }
 
   // Update timer every second
-  setInterval(async () => {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+  timerInterval = setInterval(async () => {
     const et = await getTimerState();
     if (et && et > Date.now()) {
       updateRemainingTime(et);
     } else if (et && et <= Date.now()) {
       showSetup();
+      chrome.storage.local.set({ endTime: null }); // Clear stale state
     }
   }, 1000);
 }
