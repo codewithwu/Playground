@@ -1,0 +1,140 @@
+/* Cat container */
+.cat-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cat-wrapper {
+  position: relative;
+  width: 300px;
+  height: 280px;
+  transform: translateX(100vw) translateY(0);
+  animation: cat-enter 1.5s ease-in-out forwards;
+}
+
+/* Cat enter animation */
+@keyframes cat-enter {
+  0% {
+    transform: translateX(100vw) translateY(0);
+  }
+  70% {
+    transform: translateX(-20px) translateY(0);
+  }
+  85% {
+    transform: translateX(10px) translateY(0);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Cat exit animation */
+@keyframes cat-exit-yawn {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.8);
+  }
+}
+
+@keyframes cat-fade-out {
+  from {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.cat-wrapper.exiting .cat-mouth {
+  animation: cat-exit-yawn 0.8s ease-in-out;
+}
+
+.cat-wrapper.exiting {
+  animation: cat-fade-out 0.5s ease-out 0.8s forwards;
+  pointer-events: none;
+}
+
+/* Continuous animations */
+
+/* 1. Breathing - body scaleY */
+@keyframes cat-breathe {
+  0%, 100% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(1.03) scaleX(0.99);
+  }
+}
+
+.cat-body {
+  animation: cat-breathe 1.8s ease-in-out infinite;
+  transform-origin: 150px 170px;
+}
+
+/* 2. Tail wag */
+@keyframes cat-tail-wag {
+  0%, 100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+.cat-tail {
+  animation: cat-tail-wag 0.8s ease-in-out infinite;
+}
+
+/* 3. Blink - eyelid scaleY */
+@keyframes cat-blink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+.cat-eyelid {
+  animation: cat-blink 4s ease-in-out infinite;
+}
+
+/* 4. Ear wiggle */
+@keyframes cat-ear-wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+.cat-ear-left {
+  animation: cat-ear-wiggle 1.2s ease-in-out infinite;
+}
+
+.cat-ear-right {
+  animation: cat-ear-wiggle 1.2s ease-in-out 0.3s infinite;
+}
+
+/* Lock screen overlay */
+.lock-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  background: rgba(0, 0, 0, 0.01);
+  cursor: not-allowed;
+  pointer-events: all;
+}
