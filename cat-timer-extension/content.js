@@ -2,18 +2,25 @@ let isLocked = false;
 let lockTimeout = null;
 let catTriggered = false;
 
+const LOCK_DURATION_MS = 60000;
+const STALE_TRIGGER_THRESHOLD_MS = 65000;
+const EXIT_ANIMATION_DURATION_MS = 1300;
+
 // Check if cat was already triggered on page load (page refreshed while cat showing)
 chrome.storage.local.get(['catTriggerTime'], (result) => {
+  if (chrome.runtime.lastError) return;
   if (result.catTriggerTime) {
     const elapsed = Date.now() - result.catTriggerTime;
-    if (elapsed < 65000) {
+    if (elapsed < STALE_TRIGGER_THRESHOLD_MS) {
       // Less than 65s passed, show cat with remaining lock time
-      const remainingLockTime = 60000 - elapsed;
+      const remainingLockTime = LOCK_DURATION_MS - elapsed;
       if (remainingLockTime > 0) {
         showCatAndLock(remainingLockTime);
       }
     }
-    chrome.storage.local.remove(['catTriggerTime']);
+    chrome.storage.local.remove(['catTriggerTime'], () => {
+      if (chrome.runtime.lastError) return;
+    });
   }
 });
 
@@ -21,7 +28,7 @@ chrome.storage.local.get(['catTriggerTime'], (result) => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'SHOW_CAT' && !catTriggered) {
     catTriggered = true;
-    showCatAndLock(60000);
+    showCatAndLock(LOCK_DURATION_MS);
   }
 });
 
@@ -99,5 +106,5 @@ function playExitAndCleanup(lockOverlay, blockKeys, catWrapper) {
     }
     isLocked = false;
     catTriggered = false;
-  }, 1300);
+  }, EXIT_ANIMATION_DURATION_MS);
 }
